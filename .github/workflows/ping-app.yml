@@ -3,7 +3,7 @@ name: 🔁 Keep Streamlit App Alive
 
 on:
   schedule:
-    - cron: '15 15 * * *'  # todos los días a las 12:00 UTC
+    - cron: '20 13 * * *'  # todos los días a las 12:00 UTC
   workflow_dispatch:      # permite ejecutarlo manualmente
 
 jobs:
