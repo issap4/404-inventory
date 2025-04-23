@@ -9,8 +9,7 @@ SPREADSHEET_NAME = "Lab_Material_"  # 👈 Cambia esto por el nombre exacto de t
 def get_worksheet():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     creds_dict = st.secrets["gcp_service_account"]
-    creds_json = json.loads(json.dumps(creds_dict))  # convierte a JSON
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_json, scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(credentials)
     sheet = client.open(SPREADSHEET_NAME).sheet1
     return sheet
