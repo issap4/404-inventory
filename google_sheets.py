@@ -4,14 +4,14 @@ import pandas as pd
 import streamlit as st
 import json
 
-SPREADSHEET_NAME = "Lab_Material_"  # 👈 Cambia esto por el nombre exacto de tu hoja
+SPREADSHEET_ID = "1-cgqOgrcCtAIhc5oHtodCrV295JoxCRyS7pZWhIgCbs"  # 👈 Cambia esto por el nombre exacto de tu hoja
 
 def get_worksheet():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     creds_dict = st.secrets["gcp_service_account"]
     credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(credentials)
-    sheet = client.open(SPREADSHEET_NAME).sheet1
+    sheet = client.open_by_key(SPREADSHEET_ID).sheet1
     return sheet
 
 def read_sheet():
