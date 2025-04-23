@@ -66,7 +66,7 @@ with st.form(key='modify_form'):
     new_container = st.text_input('Container', value=selected_material['Container'])
     new_location = st.selectbox('Location', ["locker 1", "locker 2", "locker 3", "work-table"], index=["locker 1", "locker 2", "locker 3", "work-table"].index(selected_material['Location']) if selected_material['Location'] in ["locker 1", "locker 2", "locker 3", "work-table"] else 0)
     new_shelf = st.selectbox('Shelf', ["top", "bottom", "2nd", "3er", "4th", "5th", "on", "under"], index=["top", "bottom", "2nd", "3er", "4th", "5th", "on", "under"].index(selected_material['Shelf']) if selected_material['Shelf'] in ["top", "bottom", "2nd", "3er", "4th", "5th", "on", "under"] else 0)
-    new_amount = st.number_input('Amount', value=selected_material['Amount'])
+    new_amount = st.text_input('Amount', value=selected_material['Amount'])
     new_keywords = st.text_input('Keywords', value=selected_material['Keywords'])
 
     submit_button = st.form_submit_button(label='Modify Material')
