@@ -19,7 +19,7 @@ def ping_streamlit():
         driver.get(URL)
 
         # Esperar hasta que el título de la página contenga "404 Material"
-        WebDriverWait(driver, 600).until(
+        WebDriverWait(driver, 60).until(
             EC.title_contains("404 Material")
         )
 
