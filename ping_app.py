@@ -23,7 +23,7 @@ def ping_streamlit():
     driver.get(URL)
 
     try:
-        WebDriverWait(driver, 20).until(
+        WebDriverWait(driver, 1000).until(
             EC.presence_of_element_located((By.TAG_NAME, "h1"))
         )
         print(f"[{datetime.utcnow()}] Fully loaded: {URL}")
