@@ -18,7 +18,7 @@ def ping_streamlit():
     try:
         driver.get(URL)
         # Esperar hasta que el título de la página contenga "404 Material"
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), '404 Material')]")))
+        WebDriverWait(driver, 360).until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), '404 Material')]")))
         print(f"[{datetime.utcnow()}] ✅ Page loaded: {URL}")
     except Exception as e:
         print(f"[{datetime.utcnow()}] ❌ Timed out or error: {e}")
