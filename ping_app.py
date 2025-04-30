@@ -18,7 +18,8 @@ def ping_streamlit():
     try:
         driver.get(URL)
         # Esperar hasta que el título de la página contenga "Material"
-        WebDriverWait(driver, 360).until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Material')]")))
+        WebDriverWait(driver, 300).until(lambda d: len(d.page_source) > 10000)  # o un número que indique que ya no es solo la pantalla de carga
+        # WebDriverWait(driver, 360).until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Material')]")))
         print(f"[{datetime.utcnow()}] ✅ Page loaded: {URL}")
     except Exception as e:
         print(f"[{datetime.utcnow()}] ❌ Timed out or error: {e}")
