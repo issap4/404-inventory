@@ -15,6 +15,7 @@ def ping_streamlit():
     options.add_argument("--disable-dev-shm-usage")
 
     driver = webdriver.Chrome(options=options)
+    print(f"Starting .get({URL})")
     try:
         driver.get(URL)
         # Esperar hasta que el título de la página contenga "Material"
