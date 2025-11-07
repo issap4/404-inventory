@@ -32,6 +32,7 @@ with st.form(key='add_form'):
     material = st.text_input('Material')
     description = st.text_input('Description')
     container = st.text_input('Container')
+    room = st.text_input('Room')
     location = st.selectbox('Location', ["locker 1", "locker 2", "locker 3", "work-table"])
     shelf = st.selectbox('Shelf', ["top", "bottom", "2nd", "3er", "4th", "5th", "on", "under"])
     amount = st.number_input('Amount', min_value=0)
@@ -44,6 +45,7 @@ with st.form(key='add_form'):
             'Material': [material],
             'Description': [description],
             'Container': [container],
+            'Room': [room],
             'Location': [location],
             'Shelf': [shelf],
             'Amount': [amount],
@@ -64,6 +66,7 @@ selected_material = df[df['Material'] == material_to_modify].iloc[0]
 with st.form(key='modify_form'):
     new_description = st.text_input('Description', value=selected_material['Description'])
     new_container = st.text_input('Container', value=selected_material['Container'])
+    new_room = st.selectbox('Room', ["404", "405"], index=["404", "405"].index(selected_material['Room']) if selected_material['Room'] in ["404", "405"] else 0)
     new_location = st.selectbox('Location', ["locker 1", "locker 2", "locker 3", "work-table"], index=["locker 1", "locker 2", "locker 3", "work-table"].index(selected_material['Location']) if selected_material['Location'] in ["locker 1", "locker 2", "locker 3", "work-table"] else 0)
     new_shelf = st.selectbox('Shelf', ["top", "bottom", "2nd", "3er", "4th", "5th", "on", "under"], index=["top", "bottom", "2nd", "3er", "4th", "5th", "on", "under"].index(selected_material['Shelf']) if selected_material['Shelf'] in ["top", "bottom", "2nd", "3er", "4th", "5th", "on", "under"] else 0)
     new_amount = st.text_input('Amount', value=selected_material['Amount'])
@@ -73,7 +76,7 @@ with st.form(key='modify_form'):
 
     if submit_button:
         df.loc[df['Material'] == material_to_modify, ['Description', 'Container', 'Location', 'Shelf', 'Amount', 'Keywords']] = [
-            new_description, new_container, new_location, new_shelf, new_amount, new_keywords
+            new_description, new_container, new_room, new_location, new_shelf, new_amount, new_keywords
         ]
         save_data(df)
         st.cache_data.clear()
