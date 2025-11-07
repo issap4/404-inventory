@@ -6,7 +6,7 @@ from google_sheets import read_sheet
 df = read_sheet()
 
 # Título de la app
-st.title("🔬404 Material - VIBES🛰️")
+st.title("🔬VIBES' Material🛰️")
 
 # Botón para ir a gestión de inventario
 if st.button("🔧 Go to Inventory Management"):
@@ -15,7 +15,12 @@ if st.button("🔧 Go to Inventory Management"):
 # Barra de búsqueda
 search_term = st.text_input("🔍 Search material or keyword:", "")
 
-# Filtros por ubicación y estante
+# Filtros por habitacion, ubicación y estante
+room_filter = st.selectbox(
+    "🚪 Filter by Room:", 
+    ["All"] + sorted(df["Room"].dropna().unique().tolist())
+)
+
 location_filter = st.selectbox(
     "📍 Filter by Location:",
     ["All"] + sorted(df["Location"].dropna().unique().tolist())
@@ -31,6 +36,9 @@ filtered_df = df[df.apply(
     lambda row: search_term.lower() in str(row.to_list()).lower(),
     axis=1
 )]
+
+if room_filter != "All":
+    filtered_df = filtered_df[filtered_df["Room"] == room_filter]
 
 if location_filter != "All":
     filtered_df = filtered_df[filtered_df["Location"] == location_filter]
@@ -54,3 +62,4 @@ if not filtered_df.empty:
         "materiales_filtrados.csv",
         "text/csv"
     )
+
