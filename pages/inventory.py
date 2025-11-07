@@ -32,7 +32,7 @@ with st.form(key='add_form'):
     material = st.text_input('Material')
     description = st.text_input('Description')
     container = st.text_input('Container')
-    room = st.text_input('Room')
+    room = st.selectbox('Room', ["404", "405"])
     location = st.selectbox('Location', ["locker 1", "locker 2", "locker 3", "work-table"])
     shelf = st.selectbox('Shelf', ["top", "bottom", "2nd", "3er", "4th", "5th", "on", "under"])
     amount = st.number_input('Amount', min_value=0)
